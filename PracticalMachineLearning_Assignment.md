@@ -9,7 +9,6 @@ library(dplyr)
 library(stringr)
 
 #First we need to tell read.csv to treat empty columns as NA by using na.strings = c("", "NA")
-
 modeldata=read.csv("C:/Users/Vaio/Desktop/Coursera-John Hopkins/8-Practical Machine Learning/Final course project-8/pml-training.csv",na.strings = c(""," ",NA,"NA"))
 validationdata=read.csv("C:/Users/Vaio/Desktop/Coursera-John Hopkins/8-Practical Machine Learning/Final course project-8/pml-training-2.csv",na.strings = c(""," ",NA,"NA"))
 

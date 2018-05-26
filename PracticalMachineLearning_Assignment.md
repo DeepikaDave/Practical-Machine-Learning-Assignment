@@ -9,6 +9,7 @@ library(dplyr)
 library(stringr)
 
 #First we need to tell read.csv to treat empty columns as NA by using na.strings = c("", "NA")
+
 modeldata=read.csv("C:/Users/Vaio/Desktop/Coursera-John Hopkins/8-Practical Machine Learning/Final course project-8/pml-training.csv",na.strings = c(""," ",NA,"NA"))
 validationdata=read.csv("C:/Users/Vaio/Desktop/Coursera-John Hopkins/8-Practical Machine Learning/Final course project-8/pml-training-2.csv",na.strings = c(""," ",NA,"NA"))
 
@@ -22,21 +23,19 @@ head(validationdata)
 
 
 #in this trainingdata dataset there are some columns whose all values are  "NA" 
-# removing columns completely filled with na
+#removing columns completely filled with na
 d=colSums(is.na(modeldata))
 sum(print(d==0))
 sum(print(d!=0))
-# y=0 variables csn be considered and rest others to be discarded
 
-colSums(is.na(modeldata))
-d
-#newtrainingdata=trainingdata[,y==0]#select only those whose sum of colum values having NA is zero
+#d=0 variables can be considered and rest others to be discarded
+#select only those whose sum of colum values having NA is zero
+
 newmodeldata=modeldata[,d==0]
-                    
-
 dim(newmodeldata)
 View(newmodeldata)
 newmodeldata$classe=as.factor(newmodeldata$classe)
+
 #after removing columns which are compltely filled with na values we are left with 60 variables
 
 

@@ -1,10 +1,6 @@
 #The goal of your project is to predict the manner in which they did the exercise. 
 #This is the "classe" variable in the training set. 
-#You may use any of the other variables to predict with. 
-#You should create a report describing how you built your model, how you used cross validation, what you think the expected out of sample error is, and why you made the choices you did. 
-#You will also use your prediction model to predict 20 different test cases.
 
-#In practical terms for the Practical Machine Learning final project, the probability of correctly predicting all 20 test cases using an algorithm with 80% accuracy is very low, as described in Required Model Accuracy. The probability of correctly predicting all 20 test cases even with a model at 95% accuracy is only 0.36. Therefore, a student must use an algorithm that has at least 99% accuracy to have a reasonable probability of obtaining a perfect score on the quiz associated with the final project.
 install.packages("caret")
 install.packages("dplyr")
 install.packages("data.table")
@@ -12,7 +8,7 @@ library(caret)
 library(dplyr)
 library(stringr)
 
-# First we need to tell read.csv to treat empty columns as NA by using na.strings = c("", "NA")
+#First we need to tell read.csv to treat empty columns as NA by using na.strings = c("", "NA")
 modeldata=read.csv("C:/Users/Vaio/Desktop/Coursera-John Hopkins/8-Practical Machine Learning/Final course project-8/pml-training.csv",na.strings = c(""," ",NA,"NA"))
 validationdata=read.csv("C:/Users/Vaio/Desktop/Coursera-John Hopkins/8-Practical Machine Learning/Final course project-8/pml-training-2.csv",na.strings = c(""," ",NA,"NA"))
 
@@ -45,7 +41,7 @@ newmodeldata$classe=as.factor(newmodeldata$classe)
 
 
 #similarly in this testdata set there are some columns whose all values are  "NA" 
-# removing columns completely filled with na
+#removing columns completely filled with na
 e=colSums(is.na(validationdata))
 sum(print(e==0))
 finalvalidationdata=validationdata[,e==0]
@@ -59,7 +55,6 @@ dim(finalvalidationdata)
 intrain=createDataPartition(y=newmodeldata$classe,p=0.70,list=FALSE)
 trainingdata=newmodeldata[intrain,]
 testingdata=newmodeldata[-intrain,]
-#x=newtraingdata1[,-c(60,1,2)]#not used as it gives less accuracy
 x=trainingdata[,-c(60,1,2,3,4,5,6,7)]#all independent variables
 y=trainingdata[,60]#depemdent variable "classe"
 

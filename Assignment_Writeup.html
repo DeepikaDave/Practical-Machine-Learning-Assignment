@@ -1,0 +1,46 @@
+
+<html>
+<head>
+<body>
+
+
+Initially  I read the data files to  get an idea of the whole training data set. 
+There were in total 160 variables,however many variables had empty or NA values, and  60 variables (out of 160) had non null values. 
+So I first removed the columns/vavriables which had empty rows/NA values and for the trainingg data set only included those variables which did not have any null values/NA values.
+I also removed some other fields did'nt seem relevant for prediction (like counter, user name, timestamp etc.). 
+At the end I had a data with  53 variables inculding the "classe" variable.
+
+
+After indentifying the dependent variables following were the steps for prediction:
+
+1. Divided the data into training set & test set(70:30)
+
+2. Named  the 20 cases as "validation set"
+
+3. Made the variable types of training and validation data same (otherwise at the end during prediction was getting error: the predictor type in the new data does not match with training data)
+
+4.Deciding upon the model to be used
+
+Initially I applied linear regression,however
+I finally chose the random forest algorithm as it was giving a better accuracy.However
+
+5.Applied cross valiadation with parallel processing before applying the model -This speeds up the processing,other-wise it was taking forever to process and give the output.
+I took aid for parallel processing in random forest fromt he below guidelinesfrom one of our mentors:
+https://github.com/lgreski/datasciencectacontent/blob/master/markdown/pml-randomForestPerformance.md 
+
+
+I got the accuracy for test data se for 5 classes as below:
+Accuracy   0.9988 0.9942 0.9858 0.9967 0.9993
+
+
+
+6. The last step was prediction for 20 cases, which I got as follows:
+
+[1] B A B A A E D B A A B C B A E E A B B B 
+Levels: A B C D E
+
+
+</html>
+</head>
+</body>
+
